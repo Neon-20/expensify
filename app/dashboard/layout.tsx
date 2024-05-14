@@ -1,3 +1,4 @@
+import HeaderPage from "./_components/header";
 
 interface Props{
     children:React.ReactNode
@@ -7,10 +8,13 @@ const DashboardLayout = ({
     children,
 }:Props) => {
     return ( 
-        <div>
+        <>
+        <HeaderPage/>
+        <main className="px-3 lg:px-14">
             {children}
-        </div>
-     );
+        </main>
+        </>
+    );
 }
- 
+
 export default DashboardLayout;
