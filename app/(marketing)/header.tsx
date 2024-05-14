@@ -23,7 +23,7 @@ const HeaderPage = () => {
     <h1 className="uppercase hidden md:flex text-xl font-black text-indigo-500
     tracking-wide cursor-pointer">
     <Link href="/">
-    expensify 💵
+    expensify 
     </Link>
     </h1>
     </div>
