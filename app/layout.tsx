@@ -4,6 +4,9 @@ import "./globals.css";
 import {ClerkProvider} from "@clerk/nextjs";
 import {neobrutalism} from "@clerk/themes";
 import { ThemeProvider } from "@/components/theme-provider"
+import { QueryProvider } from "@/providers/query-provider";
+import { NewAccountSheetProvider } from "@/providers/new-account-provider";
+import {Toaster} from "sonner";
 
 
 const font = Poppins({ 
@@ -36,7 +39,12 @@ export default function RootLayout({
             attribute="class"
             defaultTheme="light"
           > */}
+          {/* Adding providers mean that I can access it globally anywhere */}
+          <QueryProvider>
+            <NewAccountSheetProvider/>
+            <Toaster richColors />
         {children}
+         </QueryProvider>
         {/* </ThemeProvider> */}
       </body>
     </html>
