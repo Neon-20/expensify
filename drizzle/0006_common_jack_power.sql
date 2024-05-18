@@ -1,0 +1,1 @@
+ALTER TABLE "fun" RENAME COLUMN "plaid_Id" TO "sex_id";
