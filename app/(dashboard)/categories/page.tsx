@@ -1,26 +1,26 @@
 "use client"
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { useNewAccountSheet } from "@/features/accounts/zustand-hooks/use-new-account";
 import { Loader2, PlusIcon } from "lucide-react";
 import { columns} from "./columns";
 import { DataTable } from "@/components/data-table";
-import { useGetAccounts } from "@/features/accounts/react-query/use-get-accounts";
 import { Skeleton } from "@/components/ui/skeleton";
 import LoadingPage from "./fancy-loading";
-import { useDeleteAccounts } from "@/features/accounts/react-query/use-bulk-delete-accounts";
+import { useNewCategoriesSheet } from "@/features/categories/zustand-hooks/use-new-categories";
+import { useGetCategories } from "@/features/categories/react-query/use-get-category";
+import { useBulkDeleteCategories } from "@/features/categories/react-query/use-bulk-delete-categories";
 
 
 
-const AccountsPage = () => {
-    const newAccount = useNewAccountSheet();   
-    const accountsQuery = useGetAccounts();
-    const bulkDelete = useDeleteAccounts();
+const CategoriesPage = () => {
+    const newCategory = useNewCategoriesSheet();
+    const categoriesQuery = useGetCategories();
+    const bulkDelete = useBulkDeleteCategories();
 
-    const isDisabled = accountsQuery.isLoading || 
+    const isDisabled = categoriesQuery.isLoading || 
     bulkDelete.isPending 
 
-    if(accountsQuery.isLoading){
+    if(categoriesQuery.isLoading){
         return(
         <div className="max-w-screen-2xl mx-auto w-full pb-10 -mt-24">
         <Card className="border-none drop-shadow-sm">
@@ -41,10 +41,10 @@ const AccountsPage = () => {
                 <CardHeader className="gap-y-2 lg:items-center lg:justify-between 
                 lg:flex-row">
                     <CardTitle className="text-xl line-clamp-1">
-                    Account Page
+                    Categories Page
                     </CardTitle>
                     <Button 
-                    onClick={newAccount.onOpen}
+                    onClick={newCategory.onOpen}
                     variant="primary">
                         <PlusIcon className="size-4 mr-2"/>
                         Add new
@@ -58,7 +58,7 @@ const AccountsPage = () => {
                 }}
                 filterKey="name"
                 columns={columns} 
-                data={accountsQuery.data || []} 
+                data={categoriesQuery.data || []} 
                 disabled={isDisabled}
                 />
                 </CardContent>
@@ -67,4 +67,4 @@ const AccountsPage = () => {
     );
 }
 
-export default AccountsPage;
+export default CategoriesPage;

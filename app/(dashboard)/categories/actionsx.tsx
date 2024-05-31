@@ -19,8 +19,8 @@ import {
 } from "@/components/ui/menubar"
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select";
 
-import { useOpenAccount } from "@/features/accounts/zustand-hooks/use-open-account";
-import { useDeleteAccounts } from "@/features/accounts/react-query/use-delete-account";
+import { useOpenCategory } from "@/features/categories/zustand-hooks/use-open-categories";
+import { useDeleteCategory } from "@/features/categories/react-query/use-delete-category";
 import { useConfirm } from "@/hooks/use-confirm";
 import { Edit, MoreHorizontal, Trash } from "lucide-react";
 
@@ -30,12 +30,12 @@ type Props = {
 
 export const Actions = ({id}:Props) => {
     const [ConfirmDialog,confirm] = useConfirm(
-      "Are you sure to delete this account?",
-      "You are about to delete this account."
+      "Are you sure to delete this category?",
+      "You are about to delete this category."
     )
 
-    const {onOpen} = useOpenAccount();
-    const deleteMutation = useDeleteAccounts(id);
+    const {onOpen} = useOpenCategory();
+    const deleteMutation = useDeleteCategory(id);
 
     const handleDelete = async() => {
     const ok = await confirm();

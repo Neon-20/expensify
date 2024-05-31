@@ -1,6 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { useNewAccountSheet } from "@/features/accounts/hooks/use-new-account";
+import { useNewAccountSheet } from "@/features/accounts/zustand-hooks/use-new-account";
 import { UserButton } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 
