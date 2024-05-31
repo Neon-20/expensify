@@ -35,17 +35,12 @@ export default function RootLayout({
     >
     <html lang="en" suppressHydrationWarning>
       <body className={font.className}>
-      {/* <ThemeProvider
-            attribute="class"
-            defaultTheme="light"
-          > */}
           {/* Adding providers mean that I can access it globally anywhere */}
           <QueryProvider>
             <NewAccountSheetProvider/>
             <Toaster richColors />
         {children}
          </QueryProvider>
-        {/* </ThemeProvider> */}
       </body>
     </html>
     </ClerkProvider>
