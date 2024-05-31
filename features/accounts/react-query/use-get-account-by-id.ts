@@ -3,7 +3,6 @@
 import { client } from "@/lib/hono";
 import { useQuery } from "@tanstack/react-query";
 
-
 export const useGetAccountById = (id?:string) => {
     const query = useQuery({
         enabled:!!id,
@@ -21,3 +20,5 @@ export const useGetAccountById = (id?:string) => {
     })
     return query;
 }
+
+// so I am getting account by id
