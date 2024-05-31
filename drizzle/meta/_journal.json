@@ -71,6 +71,27 @@
       "when": 1716011533141,
       "tag": "0009_luxuriant_blue_blade",
       "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "6",
+      "when": 1716018734704,
+      "tag": "0010_mushy_amphibian",
+      "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "6",
+      "when": 1716018786151,
+      "tag": "0011_striped_sunspot",
+      "breakpoints": true
+    },
+    {
+      "idx": 12,
+      "version": "6",
+      "when": 1716018823634,
+      "tag": "0012_icy_genesis",
+      "breakpoints": true
     }
   ]
 }
