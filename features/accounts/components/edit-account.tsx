@@ -11,10 +11,12 @@ import {
     import { insertAccountsSchema } from "@/db/schema";
     import { z } from "zod";
     import { useGetAccountById } from "../react-query/use-get-account-by-id";
-    import { useOpenAccount } from "../hooks/use-open-account";
-    import { useCreateAccounts } from "../react-query/use-create-account";
+    import { useOpenAccount } from "../zustand-hooks/use-open-account";
     import { Loader2 } from "lucide-react";
-    
+    import { useEditAccounts } from "../react-query/use-edit-account";
+    import {useDeleteAccounts} from "../react-query/use-delete-account"
+    import { useConfirm } from "@/hooks/use-confirm";
+
     const formSchema = insertAccountsSchema.pick({
         name:true,
     })
@@ -23,17 +25,34 @@ import {
     
     export const EditAccountSheet = () => {  
         const {isOpen,onClose,id} = useOpenAccount();
-        const mutation = useCreateAccounts();
         const accountQuery = useGetAccountById(id);
         const isLoading = accountQuery.isLoading;
+        const editMutation = useEditAccounts(id);
+        const deleteMutation = useDeleteAccounts(id);
+        const [ConfirmDialog,confirm] = useConfirm(
+            "Are you sure to delete this account?",
+            "You are about to delete this account."
+        );
+        
+        const isPending = editMutation.isPending || deleteMutation.isPending
 
         const defaultValues = accountQuery.data ? 
         {name:accountQuery.data.name}
         :{name:""}
-    
+
+        const onDelete = async() => {
+            const ok = await confirm();
+            if(ok){
+                deleteMutation.mutate(undefined,{
+                    onSuccess:() => {
+                        onClose();
+                    }
+                })
+            }
+        }
 
         const onSubmit = (values:FormValues) => {
-            mutation.mutate(values,{
+            editMutation.mutate(values,{
                 onSuccess:()=>{
                     onClose()
                 }
@@ -41,6 +60,8 @@ import {
         }
 
         return(
+            <>
+            <ConfirmDialog/>
             <Sheet open={isOpen} onOpenChange={onClose}>
                 <SheetContent className="space-y-4">
                 <SheetHeader>
@@ -60,11 +81,13 @@ import {
                     // post request maarega onSubmit
                     id={id}
                     onSubmit={onSubmit}
-                    disabled={mutation.isPending}
+                    disabled={isPending}
                     defaultValues={defaultValues}
+                    onDelete={onDelete}
                     />
                 )}
                 </SheetContent>
             </Sheet>
+            </>
         )
     }

@@ -10,8 +10,8 @@ from "@/components/ui/sheet"
 import { AccountForm } from "./account-form";
 import { insertAccountsSchema } from "@/db/schema";
 import { z } from "zod";
+import { useNewAccountSheet } from "../zustand-hooks/use-new-account";
 import { useCreateAccounts } from "../react-query/use-create-account";
-import { useNewAccountSheet } from "../hooks/use-new-account";
 
 const formSchema = insertAccountsSchema.pick({
     name:true,
@@ -37,7 +37,7 @@ export const NewAccountSheet = () => {
                     New Account
                 </SheetTitle>
                 <SheetDescription>
-                    Create a new account to track your transactions.
+                    Create a new account to track your accounts.
                 </SheetDescription>
             </SheetHeader>
             <AccountForm
