@@ -18,8 +18,9 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
+import { HoverEffect } from "@/components/card-hover-effect";
 
-const routes = [
+export const routes = [
     {
     href:"/dashboard",
     label:"Overview"
@@ -90,7 +91,7 @@ const NavigationElement = () => {
 
     return ( 
         <nav className="hidden lg:flex items-center gap-x-2
-        overflow-x-auto">
+        overflow-x-auto hover:transition hover">
         {routes.map((route)=>(
         <NavButton
         key={route.href}

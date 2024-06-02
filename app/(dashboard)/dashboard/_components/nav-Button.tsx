@@ -1,6 +1,9 @@
+import { HoverEffect } from "@/components/card-hover-effect";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { routes } from "./navigation-element";
+import {motion} from "framer-motion";
 
 type Props = {
     href:string,
@@ -13,7 +16,7 @@ const NavButton = ({
     label,
     isActive
 }:Props) => {
-    return ( 
+    return (
         <Button
         asChild
         size="sm"

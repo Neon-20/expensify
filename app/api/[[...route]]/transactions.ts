@@ -173,7 +173,7 @@ async(c)=>{
         id:z.string().optional()
     })),
     zValidator("json",
-        insertCategorySchema.pick({
+    insertTransactionSchema.pick({
             name:true,
         })
     ),
